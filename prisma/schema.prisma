@@ -10,3 +10,17 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
 }
+
+model Customer {
+    id             Int       @id @default(autoincrement())
+    createdAt      DateTime  @default(now())
+    updatedAt      DateTime  @updatedAt
+    name           String
+    email          String    @unique
+    mobileNumber   String
+    country        String
+    city           String
+    company        String
+    jobTitle       String
+    targetProducts Product[]
+}
