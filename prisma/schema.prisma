@@ -23,6 +23,7 @@ model Customer {
     company        String
     jobTitle       String
     targetProducts Product[]
+    ownerID        String
 }
 
 model Product {
@@ -31,4 +32,5 @@ model Product {
     updatedAt      DateTime   @updatedAt
     name           String
     tryingToSellTo Customer[]
+    ownerID        String
 }
