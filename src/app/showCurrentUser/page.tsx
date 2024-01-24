@@ -4,7 +4,10 @@ import useSWR from "swr";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function HomePage() {
-  const { data, error, isLoading } = useSWR("/api", fetcher) as {
+  const { data, error, isLoading } = useSWR(
+    "/showCurrentUser/api",
+    fetcher,
+  ) as {
     data: {
       id: string;
       passwordEnabled: boolean;
@@ -69,7 +72,7 @@ export default function HomePage() {
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <div className="text-4xl">Hello {data.username}</div>
+      <div className="text-4xl">Current logged in user is: {data.username}</div>
     </div>
   );
 }
