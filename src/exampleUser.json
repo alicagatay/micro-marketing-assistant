@@ -1,0 +1,42 @@
+{
+  "id": "user_2bJluASewFA4YvZbyxJVepmuzOn",
+  "passwordEnabled": true,
+  "totpEnabled": false,
+  "backupCodeEnabled": false,
+  "twoFactorEnabled": false,
+  "banned": false,
+  "createdAt": 1705941282136,
+  "updatedAt": 1705942571654,
+  "imageUrl": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yYjVSS3hCdzFqNGJCWmpPYzNoRUs4bzByalAiLCJyaWQiOiJ1c2VyXzJiSmx1QVNld0ZBNFl2WmJ5eEpWZXBtdXpPbiJ9",
+  "hasImage": false,
+  "primaryEmailAddressId": "idn_2bJlu9iJBfqK6sqviGDN4SqIb7z",
+  "primaryPhoneNumberId": null,
+  "primaryWeb3WalletId": null,
+  "lastSignInAt": 1705942571630,
+  "externalId": null,
+  "username": "test123",
+  "firstName": null,
+  "lastName": null,
+  "publicMetadata": {},
+  "privateMetadata": {},
+  "unsafeMetadata": {},
+  "emailAddresses": [
+    {
+      "id": "idn_2bJlu9iJBfqK6sqviGDN4SqIb7z",
+      "emailAddress": "test@email.com",
+      "verification": {
+        "status": "verified",
+        "strategy": "admin",
+        "externalVerificationRedirectURL": null,
+        "attempts": null,
+        "expireAt": null,
+        "nonce": null
+      },
+      "linkedTo": []
+    }
+  ],
+  "phoneNumbers": [],
+  "web3Wallets": [],
+  "externalAccounts": [],
+  "createOrganizationEnabled": true
+}
