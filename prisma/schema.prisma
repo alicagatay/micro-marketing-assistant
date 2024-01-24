@@ -12,25 +12,16 @@ generator client {
 }
 
 model Customer {
-    id             Int       @id @default(autoincrement())
-    createdAt      DateTime  @default(now())
-    updatedAt      DateTime  @updatedAt
-    name           String
-    email          String    @unique
-    mobileNumber   String
-    country        String
-    city           String
-    company        String
-    jobTitle       String
-    targetProducts Product[]
-    ownerID        String
-}
-
-model Product {
-    id             Int        @id @default(autoincrement())
-    createdAt      DateTime   @default(now())
-    updatedAt      DateTime   @updatedAt
-    name           String
-    tryingToSellTo Customer[]
-    ownerID        String
+    id            Int      @id @default(autoincrement())
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    name          String
+    email         String   @unique
+    mobileNumber  String
+    country       String
+    city          String
+    company       String
+    jobTitle      String
+    targetProduct String
+    ownerID       String
 }
