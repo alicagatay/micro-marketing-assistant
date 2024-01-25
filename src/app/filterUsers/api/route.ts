@@ -1,4 +1,6 @@
 import { type NextRequest } from "next/server";
+import { clerkClient, currentUser } from "@clerk/nextjs";
+import { PrismaClient } from "@prisma/client";
 
 export function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
