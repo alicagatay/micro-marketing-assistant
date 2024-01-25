@@ -23,10 +23,7 @@ function classNames(...classes: string[]) {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function TableScreen() {
-  const { data, error, isLoading } = useSWR(
-    "/showAllUserCustomers/api",
-    fetcher,
-  ) as {
+  const { data, error, isLoading } = useSWR("/filterUsers/api", fetcher) as {
     data: Person[];
     error: boolean;
     isLoading: boolean;
