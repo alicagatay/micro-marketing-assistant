@@ -2,7 +2,9 @@ import { type NextRequest } from "next/server";
 import { clerkClient, currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
+  const prisma = new PrismaClient();
+  const user = await currentUser();
   const searchParams = request.nextUrl.searchParams;
   const city = searchParams.get("city");
   const country = searchParams.get("country");
