@@ -1,3 +1,6 @@
+"use client";
+import useSWR from "swr";
+
 type Person = {
   id: number;
   createdAt: string;
@@ -12,28 +15,31 @@ type Person = {
   targetProduct: string;
   ownerID: string;
 };
-const peopleList: Person[] = [
-  {
-    id: 1,
-    createdAt: "2024-01-24T18:26:02.039Z",
-    updatedAt: "2024-01-24T21:43:37.515Z",
-    name: "Armin Quattlebaum",
-    email: "arminquattlebaum@yahoo.com",
-    mobileNumber: "+491522982503",
-    country: "Germany",
-    city: "Berlin",
-    company: "Carter, Lee and White",
-    jobTitle: "Business Analyst",
-    targetProduct: "Black Masterbatch",
-    ownerID: "user_2bJluASewFA4YvZbyxJVepmuzOn",
-  },
-];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function TableScreen() {
+  const { data, error, isLoading } = useSWR(
+    "/showAllUserCustomers/api",
+    fetcher,
+  ) as {
+    data: Person[];
+    error: boolean;
+    isLoading: boolean;
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="mt-8 flow-root">
@@ -93,11 +99,11 @@ export default function TableScreen() {
                 </tr>
               </thead>
               <tbody>
-                {peopleList.map((person, personIdx) => (
+                {data.map((person, personIdx) => (
                   <tr key={person.id}>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8",
@@ -107,7 +113,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell",
@@ -117,7 +123,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell",
@@ -127,7 +133,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
@@ -137,7 +143,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
@@ -147,7 +153,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
@@ -157,7 +163,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
@@ -167,7 +173,7 @@ export default function TableScreen() {
                     </td>
                     <td
                       className={classNames(
-                        personIdx !== peopleList.length - 1
+                        personIdx !== data.length - 1
                           ? "border-b border-gray-200"
                           : "",
                         "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
