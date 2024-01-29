@@ -12,11 +12,25 @@ function saveFilterData() {
     "targetProductFilter",
   ) as HTMLInputElement;
 
+  let API_URL = "/filterUsers/api";
+
+  if (countryFilter.value) {
+    API_URL += `?country=${countryFilter.value}`;
+  }
+
+  if (cityFilter.value) {
+    API_URL += `&city=${cityFilter.value}`;
+  }
+
+  if (companyFilter.value) {
+    API_URL += `&company=${companyFilter.value}`;
+  }
+
+  if (targetProductFilter.value) {
+    API_URL += `&targetProduct=${targetProductFilter.value}`;
+  }
   const filterData = {
-    countryFilter: countryFilter.value,
-    cityFilter: cityFilter.value,
-    companyFilter: companyFilter.value,
-    targetProductFilter: targetProductFilter.value,
+    API_URL: API_URL,
   };
 
   sessionStorage.setItem("filterData", JSON.stringify(filterData));
