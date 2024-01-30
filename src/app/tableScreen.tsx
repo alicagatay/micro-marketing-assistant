@@ -231,7 +231,7 @@ export default function TableScreen() {
 
   return (
     <div className="flex h-screen flex-col">
-      <div className="flex h-1/6 flex-row space-x-6 px-8">
+      <div className="flex h-1/6 flex-row place-content-evenly">
         <input
           className="h-1/2 w-1/5 place-self-center border-2 border-black text-center text-[20px]"
           type="text"
@@ -259,14 +259,24 @@ export default function TableScreen() {
           placeholder="Target Product"
           id="targetProductFilter"
         />
+      </div>
 
+      <div className="flex flex-row place-content-evenly">
         <input
-          className="h-1/4 w-[120px] place-self-center border-2 border-black text-center text-[20px]"
+          className="h-[40px] w-[180px] place-self-center border-2 border-black text-center text-[20px]"
           type="button"
-          value="Filter"
+          value="Filter Customers"
           onClick={() => {
             const filterData = saveFilterData();
             setFilterData(filterData);
+          }}
+        />
+        <input
+          className="h-[40px] w-[160px] place-self-center border-2 border-black text-center text-[20px]"
+          type="button"
+          value="Add Customer"
+          onClick={() => {
+            console.log("Deneme");
           }}
         />
       </div>
