@@ -31,20 +31,175 @@ function saveFilterData() {
 
   let API_URL = "/filterUsers/api";
 
-  if (countryFilter.value) {
+  if (
+    countryFilter.value &&
+    !cityFilter.value &&
+    !companyFilter.value &&
+    !targetProductFilter.value
+  ) {
     API_URL += `?country=${countryFilter.value}`;
   }
 
-  if (cityFilter.value) {
-    API_URL += `&city=${cityFilter.value}`;
+  if (
+    !countryFilter.value &&
+    cityFilter.value &&
+    !companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    API_URL += `?city=${cityFilter.value}`;
   }
 
-  if (companyFilter.value) {
-    API_URL += `&company=${companyFilter.value}`;
+  if (
+    !countryFilter.value &&
+    !cityFilter.value &&
+    companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    let value = companyFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?company=${value}`;
   }
 
-  if (targetProductFilter.value) {
-    API_URL += `&targetProduct=${targetProductFilter.value}`;
+  if (
+    !countryFilter.value &&
+    !cityFilter.value &&
+    !companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value = targetProductFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?targetProduct=${value}`;
+  }
+
+  if (
+    countryFilter.value &&
+    cityFilter.value &&
+    !companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    API_URL += `?country=${countryFilter.value}&city=${cityFilter.value}`;
+  }
+
+  if (
+    countryFilter.value &&
+    !cityFilter.value &&
+    companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    let value = companyFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&company=${value}`;
+  }
+
+  if (
+    countryFilter.value &&
+    !cityFilter.value &&
+    !companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value = targetProductFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&targetProduct=${value}`;
+  }
+
+  if (
+    !countryFilter.value &&
+    cityFilter.value &&
+    companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    let value = companyFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?city=${cityFilter.value}&company=${value}`;
+  }
+
+  if (
+    !countryFilter.value &&
+    cityFilter.value &&
+    !companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value = targetProductFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?city=${cityFilter.value}&targetProduct=${value}`;
+  }
+
+  if (
+    !countryFilter.value &&
+    !cityFilter.value &&
+    companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value1 = companyFilter.value;
+    value1 = value1.split(" ").join("+");
+
+    let value2 = targetProductFilter.value;
+    value2 = value2.split(" ").join("+");
+    API_URL += `?company=${value1}&targetProduct=${value2}`;
+  }
+
+  if (
+    countryFilter.value &&
+    cityFilter.value &&
+    companyFilter.value &&
+    !targetProductFilter.value
+  ) {
+    let value = companyFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&city=${cityFilter.value}&company=${value}`;
+  }
+
+  if (
+    countryFilter.value &&
+    cityFilter.value &&
+    !companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value = targetProductFilter.value;
+    value = value.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&city=${cityFilter.value}&targetProduct=${value}`;
+  }
+
+  if (
+    countryFilter.value &&
+    !cityFilter.value &&
+    companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value1 = companyFilter.value;
+    value1 = value1.split(" ").join("+");
+
+    let value2 = targetProductFilter.value;
+    value2 = value2.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&company=${value1}&targetProduct=${value2}`;
+  }
+
+  if (
+    !countryFilter.value &&
+    cityFilter.value &&
+    companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value1 = companyFilter.value;
+    value1 = value1.split(" ").join("+");
+
+    let value2 = targetProductFilter.value;
+    value2 = value2.split(" ").join("+");
+    API_URL += `?city=${cityFilter.value}&company=${value1}&targetProduct=${value2}`;
+  }
+
+  if (
+    countryFilter.value &&
+    cityFilter.value &&
+    companyFilter.value &&
+    targetProductFilter.value
+  ) {
+    let value1 = companyFilter.value;
+    value1 = value1.split(" ").join("+");
+
+    let value2 = targetProductFilter.value;
+    value2 = value2.split(" ").join("+");
+    API_URL += `?country=${countryFilter.value}&city=${cityFilter.value}&company=${value1}&targetProduct=${value2}`;
   }
 
   const filterData = API_URL;
