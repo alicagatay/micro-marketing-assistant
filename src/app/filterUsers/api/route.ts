@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const city = searchParams.get("city");
   const country = searchParams.get("country");
   let company = searchParams.get("company");
-  const targetProduct = searchParams.get("targetProduct");
+  let targetProduct = searchParams.get("targetProduct");
 
   if (
     city !== null &&
@@ -18,6 +18,7 @@ export async function GET(request: NextRequest) {
     targetProduct !== null
   ) {
     company = company.split("+").join(" ");
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -62,6 +63,7 @@ export async function GET(request: NextRequest) {
     });
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && country !== null && targetProduct !== null) {
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -83,6 +85,7 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -104,6 +107,7 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (country !== null && company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -159,6 +163,7 @@ export async function GET(request: NextRequest) {
     });
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && targetProduct !== null) {
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -194,6 +199,7 @@ export async function GET(request: NextRequest) {
     });
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (country !== null && targetProduct !== null) {
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -212,6 +218,7 @@ export async function GET(request: NextRequest) {
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFiltered = await prisma.customer.findMany({
       where: {
         AND: [
@@ -272,6 +279,7 @@ export async function GET(request: NextRequest) {
     });
     return new Response(JSON.stringify(userCustomersFilteredByCompany));
   } else if (targetProduct !== null) {
+    targetProduct = targetProduct.split("+").join(" ");
     const userCustomersFilteredByTargetProduct = await prisma.customer.findMany(
       {
         where: {
