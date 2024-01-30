@@ -276,7 +276,7 @@ export default function TableScreen() {
           type="button"
           value="Add Customer"
           onClick={() => {
-            console.log("Deneme");
+            console.log("Add customer button pressed.");
           }}
         />
       </div>
