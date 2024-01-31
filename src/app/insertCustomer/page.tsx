@@ -1,3 +1,4 @@
+"use client";
 type Customer = {
   name: string;
   email: string;
