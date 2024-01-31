@@ -1,15 +1,4 @@
 "use client";
-type Customer = {
-  name: string;
-  email: string;
-  mobileNumber: string;
-  country: string;
-  city: string;
-  company: string;
-  jobTitle: string;
-  targetProduct: string;
-  ownerID: string;
-};
 
 export default function Page() {
   return (
@@ -171,6 +160,9 @@ export default function Page() {
           <button
             type="button"
             className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={() => {
+              console.log("Insert customer button pressed");
+            }}
           >
             Insert Customer
           </button>
