@@ -1,6 +1,46 @@
 "use client";
+import Link from "next/link";
+import useSWRMutation from "swr/mutation";
+
+async function sendRequest(url: string, { arg }: { arg: object }) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  });
+}
 
 export default function Page() {
+  const { trigger } = useSWRMutation("/insertCustomer/api", sendRequest);
+
+  async function submitData() {
+    const name = (document.getElementById("fullName") as HTMLInputElement)
+      .value;
+    const email = (document.getElementById("emailAddress") as HTMLInputElement)
+      .value;
+    const mobileNumber = (
+      document.getElementById("mobileNumber") as HTMLInputElement
+    ).value;
+    const country = (document.getElementById("country") as HTMLInputElement)
+      .value;
+    const city = (document.getElementById("city") as HTMLInputElement).value;
+    const company = (document.getElementById("company") as HTMLInputElement)
+      .value;
+    const jobTitle = (document.getElementById("jobTitle") as HTMLInputElement)
+      .value;
+    const targetProduct = (
+      document.getElementById("targetProduct") as HTMLInputElement
+    ).value;
+    await trigger({
+      name: name,
+      email: email,
+      mobileNumber: mobileNumber,
+      country: country,
+      city: city,
+      company: company,
+      jobTitle: jobTitle,
+      targetProduct: targetProduct,
+    });
+  }
   return (
     <div className="mb-8 mt-6 flex w-full justify-center">
       <div className="flex w-6/12 flex-col space-y-12">
@@ -158,20 +198,20 @@ export default function Page() {
         </div>
         <div className="flex flex-row space-x-32">
           <button
-            type="button"
+            type="submit"
             className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={() => {
-              console.log("Insert customer button pressed");
-            }}
+            onClick={submitData}
           >
             Insert Customer
           </button>
-          <button
-            type="button"
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Cancel & Go Back
-          </button>
+          <Link href="/">
+            <button
+              type="button"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Go Back
+            </button>
+          </Link>
         </div>
       </div>
     </div>
