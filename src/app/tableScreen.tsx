@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import useSWR from "swr";
 import { useState } from "react";
 
@@ -271,14 +272,13 @@ export default function TableScreen() {
             setFilterData(filterData);
           }}
         />
-        <input
-          className="h-[40px] w-[160px] place-self-center border-2 border-black text-center text-[20px]"
-          type="button"
-          value="Add Customer"
-          onClick={() => {
-            console.log("Add customer button pressed.");
-          }}
-        />
+        <Link href="/insertCustomer">
+          <input
+            className="h-[40px] w-[160px] place-self-center border-2 border-black text-center text-[20px]"
+            type="button"
+            value="Add Customer"
+          />
+        </Link>
       </div>
 
       <div className="h-5/6 overflow-auto px-4 sm:px-6 lg:px-8">
