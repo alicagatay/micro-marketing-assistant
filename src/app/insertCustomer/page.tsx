@@ -11,11 +11,13 @@ type Customer = {
   ownerID: string;
 };
 
-export default function InsertCustomer() {
+import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+
+export default function Page() {
   return (
     <div className="flex w-full justify-center">
       <div className="flex w-6/12 flex-col">
-        <form className="">
+        <form>
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
