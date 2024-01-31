@@ -10,7 +10,7 @@ type Customer = {
   ownerID: string;
 };
 
-export default function Example() {
+export default function InsertCustomer() {
   return (
     <div className="flex w-full justify-center">
       <div className="flex w-6/12 flex-col">
