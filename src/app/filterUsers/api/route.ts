@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import { clerkClient, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 
 export async function GET(request: NextRequest) {
