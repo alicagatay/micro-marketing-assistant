@@ -1,6 +1,6 @@
-import { clerkClient, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 
-export async function GET(request: Request) {
+export async function GET() {
   const user = await currentUser();
 
   return new Response(JSON.stringify(user));
