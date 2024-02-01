@@ -2,6 +2,23 @@ import { type NextRequest } from "next/server";
 import { currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 
+type Customer = {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  email: string;
+  mobileNumber: string;
+  country: string;
+  city: string;
+  company: string;
+  jobTitle: string;
+  targetProduct: string;
+  ownerID: string;
+};
+
+type FilteredCustomerList = Customer[];
+
 export async function GET(request: NextRequest) {
   const prisma = new PrismaClient();
   const user = await currentUser();
@@ -19,269 +36,283 @@ export async function GET(request: NextRequest) {
   ) {
     company = company.split("+").join(" ");
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            country: country,
-          },
-          {
-            company: company,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              country: country,
+            },
+            {
+              company: company,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && country !== null && company !== null) {
     company = company.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            country: country,
-          },
-          {
-            company: company,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              country: country,
+            },
+            {
+              company: company,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && country !== null && targetProduct !== null) {
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            country: country,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              country: country,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            company: company,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              company: company,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (country !== null && company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            country: country,
-          },
-          {
-            company: company,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              country: country,
+            },
+            {
+              company: company,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && country !== null) {
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            country: country,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              country: country,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && company !== null) {
     company = company.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            company: company,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              company: company,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null && targetProduct !== null) {
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (country !== null && company !== null) {
     company = company.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            country: country,
-          },
-          {
-            company: company,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              country: country,
+            },
+            {
+              company: company,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (country !== null && targetProduct !== null) {
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            country: country,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              country: country,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (company !== null && targetProduct !== null) {
     company = company.split("+").join(" ");
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFiltered = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            company: company,
-          },
-          {
-            targetProduct: targetProduct,
-          },
-        ],
-      },
-    });
+    const userCustomersFiltered: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              company: company,
+            },
+            {
+              targetProduct: targetProduct,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFiltered));
   } else if (city !== null) {
-    const userCustomersFilteredByCity = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            city: city,
-          },
-        ],
-      },
-    });
+    const userCustomersFilteredByCity: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              city: city,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFilteredByCity));
   } else if (country !== null) {
-    const userCustomersFilteredByCountry = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            country: country,
-          },
-        ],
-      },
-    });
+    const userCustomersFilteredByCountry: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              country: country,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFilteredByCountry));
   } else if (company !== null) {
     company = company.split("+").join(" ");
-    const userCustomersFilteredByCompany = await prisma.customer.findMany({
-      where: {
-        AND: [
-          {
-            ownerID: user?.id,
-          },
-          {
-            company: company,
-          },
-        ],
-      },
-    });
+    const userCustomersFilteredByCompany: FilteredCustomerList =
+      (await prisma.customer.findMany({
+        where: {
+          AND: [
+            {
+              ownerID: user?.id,
+            },
+            {
+              company: company,
+            },
+          ],
+        },
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFilteredByCompany));
   } else if (targetProduct !== null) {
     targetProduct = targetProduct.split("+").join(" ");
-    const userCustomersFilteredByTargetProduct = await prisma.customer.findMany(
-      {
+    const userCustomersFilteredByTargetProduct: FilteredCustomerList =
+      (await prisma.customer.findMany({
         where: {
           AND: [
             {
@@ -292,15 +323,16 @@ export async function GET(request: NextRequest) {
             },
           ],
         },
-      },
-    );
+      })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFilteredByTargetProduct));
   } else {
-    const userCustomers = await prisma.customer.findMany({
-      where: {
-        ownerID: user?.id,
+    const userCustomers: FilteredCustomerList = (await prisma.customer.findMany(
+      {
+        where: {
+          ownerID: user?.id,
+        },
       },
-    });
+    )) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomers));
   }
 }
