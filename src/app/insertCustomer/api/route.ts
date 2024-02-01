@@ -1,4 +1,4 @@
-import { clerkClient, currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
 
 type Customer = {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     body.ownerID = user.id;
   }
 
-  const customer = await prisma.customer.create({
+  const customer: Customer = (await prisma.customer.create({
     data: {
       name: body.name,
       email: body.email,
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       targetProduct: body.targetProduct,
       ownerID: body.ownerID,
     },
-  });
+  })) as Customer;
 
   return Response.json(customer);
 }
