@@ -24,4 +24,6 @@ model Customer {
     jobTitle      String
     targetProduct String
     ownerID       String
+    source        String
+    customerNotes String
 }
