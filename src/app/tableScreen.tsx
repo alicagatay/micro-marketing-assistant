@@ -16,6 +16,8 @@ type Person = {
   jobTitle: string;
   targetProduct: string;
   ownerID: string;
+  source: string;
+  customerNotes: string;
 };
 
 function saveFilterData() {
