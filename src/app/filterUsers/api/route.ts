@@ -4,8 +4,8 @@ import { PrismaClient } from "@prisma/client";
 
 type Customer = {
   id: number;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   name: string;
   email: string;
   mobileNumber: string;
@@ -15,6 +15,8 @@ type Customer = {
   jobTitle: string;
   targetProduct: string;
   ownerID: string;
+  source: string;
+  customerNotes: string;
 };
 
 type FilteredCustomerList = Customer[];
@@ -27,7 +29,6 @@ export async function GET(request: NextRequest) {
   const country = searchParams.get("country");
   let company = searchParams.get("company");
   let targetProduct = searchParams.get("targetProduct");
-
   if (
     city !== null &&
     country !== null &&
