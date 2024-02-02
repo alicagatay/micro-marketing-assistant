@@ -11,6 +11,8 @@ type Customer = {
   jobTitle: string;
   targetProduct: string;
   ownerID: string;
+  source: string;
+  customerNotes: string;
 };
 
 type requestBody = {
@@ -23,6 +25,8 @@ type requestBody = {
   jobTitle: string;
   targetProduct: string;
   ownerID: string;
+  source: string;
+  customerNotes: string;
 };
 
 export async function POST(request: Request) {
@@ -46,6 +50,8 @@ export async function POST(request: Request) {
       jobTitle: body.jobTitle,
       targetProduct: body.targetProduct,
       ownerID: body.ownerID,
+      source: body.source,
+      customerNotes: "",
     },
   })) as Customer;
 
