@@ -30,6 +30,10 @@ export default function Page() {
     const targetProduct = (
       document.getElementById("targetProduct") as HTMLInputElement
     ).value;
+    const customerSource = (
+      document.getElementById("customerSource") as HTMLInputElement
+    ).value;
+    const customerNotes = "";
     await trigger({
       name: name,
       email: email,
@@ -39,6 +43,8 @@ export default function Page() {
       company: company,
       jobTitle: jobTitle,
       targetProduct: targetProduct,
+      customerSource: customerSource,
+      customerNotes: customerNotes,
     });
   }
   return (
@@ -193,6 +199,23 @@ export default function Page() {
               id="targetProduct"
               className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               placeholder="Enter the target product you are selling to your customer."
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            htmlFor="customerSource"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Source
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              name="customerSource"
+              id="customerSource"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter the where or how did you meet your customer.(Conference, they contacted you, LinkedIn, etc.)"
             />
           </div>
         </div>
