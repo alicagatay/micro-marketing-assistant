@@ -43,7 +43,7 @@ export default function Page() {
       company: company,
       jobTitle: jobTitle,
       targetProduct: targetProduct,
-      customerSource: customerSource,
+      source: customerSource,
       customerNotes: customerNotes,
     });
   }
