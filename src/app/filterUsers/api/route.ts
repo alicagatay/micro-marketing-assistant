@@ -29,6 +29,8 @@ export async function GET(request: NextRequest) {
   const country = searchParams.get("country");
   let company = searchParams.get("company");
   let targetProduct = searchParams.get("targetProduct");
+  const customerID = searchParams.get("customerID");
+
   if (
     city !== null &&
     country !== null &&
@@ -326,6 +328,13 @@ export async function GET(request: NextRequest) {
         },
       })) as FilteredCustomerList;
     return new Response(JSON.stringify(userCustomersFilteredByTargetProduct));
+  } else if (customerID !== null) {
+    const userCustomer: Customer = (await prisma.customer.findUnique({
+      where: {
+        id: parseInt(customerID),
+      },
+    })) as Customer;
+    return new Response(JSON.stringify(userCustomer));
   } else {
     const userCustomers: FilteredCustomerList = (await prisma.customer.findMany(
       {
