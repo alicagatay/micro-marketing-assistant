@@ -1,6 +1,14 @@
 "use client";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
+import useSWRMutation from "swr/mutation";
+
+async function sendRequest(url: string, { arg }: { arg: object }) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  });
+}
 
 type Customer = {
   id: number;
@@ -21,11 +29,8 @@ type Customer = {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-function submitData() {
-  console.log("Button Clicked");
-}
-
 export default function Page({ params }: { params: { customerID: number } }) {
+  const { trigger } = useSWRMutation("/customerNotes/api", sendRequest);
   const { data, error, isLoading } = useSWR(
     `/filterUsers/api?customerID=${params.customerID}`,
     fetcher,
@@ -35,11 +40,21 @@ export default function Page({ params }: { params: { customerID: number } }) {
     isLoading: boolean;
   };
 
+  async function submitData() {
+    console.log("Button Clicked");
+
+    await trigger({
+      customerID: params.customerID,
+      customerNotes: (
+        document.getElementById("customerNotes") as HTMLTextAreaElement
+      ).value,
+    });
+  }
+
   const [customerNotes, setCustomerNotes] = useState("");
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setCustomerNotes(data.customerNotes);
     }
   }, [data]);
