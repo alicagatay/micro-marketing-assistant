@@ -2,6 +2,7 @@
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import useSWRMutation from "swr/mutation";
+import Link from "next/link";
 
 async function sendRequest(url: string, { arg }: { arg: object }) {
   return fetch(url, {
@@ -69,22 +70,33 @@ export default function Page({ params }: { params: { customerID: number } }) {
 
   if (data) {
     return (
-      <div className="flex h-full min-h-screen flex-col items-center justify-center">
+      <div className="flex h-full min-h-screen flex-col items-center justify-center space-y-12">
         <textarea
           id="customerNotes"
-          className="h-[400px] w-[800px] rounded-md border-gray-300 bg-gray-600 p-4 text-base text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="h-[400px] w-[800px] rounded-md border-gray-300 bg-gray-400 p-4 text-base text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           value={customerNotes}
           onChange={(e) => {
             setCustomerNotes(e.target.value);
           }}
         />
-        <button
-          type="submit"
-          className="mt-4 h-[80px] w-[150px] rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={submitData}
-        >
-          Edit Customer Note
-        </button>
+        <div className="flex flex-row space-x-24">
+          <button
+            type="submit"
+            className="mt-4 h-[80px] w-[150px] rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={submitData}
+          >
+            Edit Customer Note
+          </button>
+
+          <Link href="/">
+            <button
+              type="button"
+              className="mt-4 h-[80px] w-[150px] rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Go Back
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }
