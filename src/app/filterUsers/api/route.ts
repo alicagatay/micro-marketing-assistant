@@ -332,6 +332,7 @@ export async function GET(request: NextRequest) {
     const userCustomer: Customer = (await prisma.customer.findUnique({
       where: {
         id: parseInt(customerID),
+        ownerID: user?.id,
       },
     })) as Customer;
     return new Response(JSON.stringify(userCustomer));
