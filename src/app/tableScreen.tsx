@@ -276,9 +276,9 @@ export default function TableScreen() {
         />
         <Link href="/insertCustomer">
           <input
-            className="h-[40px] w-[160px] place-self-center border-2 border-black text-center text-[20px]"
+            className="h-[40px] w-[180px] place-self-center border-2 border-black text-center text-[20px]"
             type="button"
-            value="Add Customer"
+            value="Insert Customer"
           />
         </Link>
       </div>
