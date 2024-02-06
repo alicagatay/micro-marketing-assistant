@@ -71,6 +71,78 @@ export default function Page() {
 
         <div>
           <label
+            htmlFor="targetProduct"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Target Product
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              name="targetProduct"
+              id="targetProduct"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter the target product you are selling to your customer."
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="company"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Company
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              name="company"
+              id="company"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter the company your customer works at."
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="country"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Country
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              name="country"
+              id="country"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter the country where your customer is from."
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="city"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            City
+          </label>
+          <div className="mt-2">
+            <input
+              type="text"
+              name="city"
+              id="city"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="Enter the city where your customer is from."
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
             htmlFor="fullName"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
@@ -125,60 +197,6 @@ export default function Page() {
 
         <div>
           <label
-            htmlFor="country"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Country
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              name="country"
-              id="country"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder="Enter the country where your customer is from."
-            />
-          </div>
-        </div>
-
-        <div>
-          <label
-            htmlFor="city"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            City
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              name="city"
-              id="city"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder="Enter the city where your customer is from."
-            />
-          </div>
-        </div>
-
-        <div>
-          <label
-            htmlFor="company"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Company
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              name="company"
-              id="company"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder="Enter the company your customer works at."
-            />
-          </div>
-        </div>
-
-        <div>
-          <label
             htmlFor="jobTitle"
             className="block text-sm font-medium leading-6 text-gray-900"
           >
@@ -195,23 +213,6 @@ export default function Page() {
           </div>
         </div>
 
-        <div>
-          <label
-            htmlFor="targetProduct"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            Target Product
-          </label>
-          <div className="mt-2">
-            <input
-              type="text"
-              name="targetProduct"
-              id="targetProduct"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder="Enter the target product you are selling to your customer."
-            />
-          </div>
-        </div>
         <div>
           <label
             htmlFor="customerSource"
