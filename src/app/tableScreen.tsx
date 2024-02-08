@@ -2,6 +2,7 @@
 import Link from "next/link";
 import useSWR from "swr";
 import { useState } from "react";
+import { UserButton } from "@clerk/clerk-react";
 
 type Person = {
   id: number;
@@ -236,32 +237,35 @@ export default function TableScreen() {
     <div className="flex h-screen flex-col">
       <div className="flex h-1/6 flex-row place-content-evenly">
         <input
-          className="h-1/2 w-1/5 place-self-center border-2 border-black text-center text-[20px]"
+          className="h-1/2 w-1/6 place-self-center border-2 border-black text-center text-[20px]"
           type="text"
           placeholder="Country"
           id="countryFilter"
         />
 
         <input
-          className="h-1/2 w-1/5 place-self-center border-2 border-black text-center text-[20px]"
+          className="h-1/2 w-1/6 place-self-center border-2 border-black text-center text-[20px]"
           type="text"
           placeholder="City"
           id="cityFilter"
         />
 
         <input
-          className="h-1/2 w-1/5 place-self-center border-2 border-black text-center text-[20px]"
+          className="h-1/2 w-1/6 place-self-center border-2 border-black text-center text-[20px]"
           type="text"
           placeholder="Company"
           id="companyFilter"
         />
 
         <input
-          className="h-1/2 w-1/5 place-self-center border-2 border-black text-center text-[20px]"
+          className="h-1/2 w-1/6 place-self-center border-2 border-black text-center text-[20px]"
           type="text"
           placeholder="Target Product"
           id="targetProductFilter"
         />
+        <div className="flex h-1/2 w-[30px] items-center justify-center place-self-center">
+          <UserButton />
+        </div>
       </div>
 
       <div className="flex flex-row place-content-evenly">
