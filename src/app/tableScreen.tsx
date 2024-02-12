@@ -356,6 +356,12 @@ export default function TableScreen() {
                     >
                       Source
                     </th>
+                    <th
+                      scope="col"
+                      className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter"
+                    >
+                      Edit
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -483,6 +489,25 @@ export default function TableScreen() {
                         )}
                       >
                         {person.source}
+                      </td>
+
+                      {/* Edit customer info */}
+                      <td
+                        className={classNames(
+                          personIdx !== data.length - 1
+                            ? "border-b border-gray-200"
+                            : "",
+                          "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
+                        )}
+                      >
+                        <Link href={`/customerNotes/${person.id}`}>
+                          <button
+                            type="button"
+                            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          >
+                            Edit
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
