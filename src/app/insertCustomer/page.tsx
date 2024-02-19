@@ -66,6 +66,11 @@ function validateForm() {
     return false;
   }
 
+  if (email.includes("@") === false || email.includes(".") === false) {
+    alert("Email must be a valid email address");
+    return false;
+  }
+
   if (mobileNumber === "") {
     alert("Mobile Number must be filled out");
     return false;
