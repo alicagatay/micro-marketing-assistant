@@ -15,15 +15,15 @@ model Customer {
     id            Int      @id @default(autoincrement())
     createdAt     DateTime @default(now())
     updatedAt     DateTime @updatedAt
-    name          String
-    email         String   @unique
-    mobileNumber  String
-    country       String
-    city          String
-    company       String
-    jobTitle      String
-    targetProduct String
-    ownerID       String
-    source        String
-    customerNotes String
+    name          String   @db.VarChar(256)
+    email         String   @unique @db.VarChar(256)
+    mobileNumber  String   @db.VarChar(256)
+    country       String   @db.VarChar(256)
+    city          String   @db.VarChar(256)
+    company       String   @db.VarChar(256)
+    jobTitle      String   @db.VarChar(256)
+    targetProduct String   @db.VarChar(256)
+    ownerID       String   @db.VarChar(256)
+    source        String   @db.VarChar(512)
+    customerNotes String   @db.VarChar(2048)
 }
