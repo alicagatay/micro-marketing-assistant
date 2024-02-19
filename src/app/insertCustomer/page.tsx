@@ -9,6 +9,136 @@ async function sendRequest(url: string, { arg }: { arg: object }) {
   });
 }
 
+function validateForm() {
+  const name = (document.getElementById("fullName") as HTMLInputElement).value;
+  const email = (document.getElementById("emailAddress") as HTMLInputElement)
+    .value;
+  const mobileNumber = (
+    document.getElementById("mobileNumber") as HTMLInputElement
+  ).value;
+  const country = (document.getElementById("country") as HTMLInputElement)
+    .value;
+  const city = (document.getElementById("city") as HTMLInputElement).value;
+  const company = (document.getElementById("company") as HTMLInputElement)
+    .value;
+  const jobTitle = (document.getElementById("jobTitle") as HTMLInputElement)
+    .value;
+  const targetProduct = (
+    document.getElementById("targetProduct") as HTMLInputElement
+  ).value;
+  const customerSource = (
+    document.getElementById("customerSource") as HTMLInputElement
+  ).value;
+
+  /*
+  Check if fields have been filled out and have the following sizes:
+
+  model Customer {
+    name          String   @db.VarChar(256)
+    email         String   @unique @db.VarChar(256)
+    mobileNumber  String   @db.VarChar(256)
+    country       String   @db.VarChar(256)
+    city          String   @db.VarChar(256)
+    company       String   @db.VarChar(256)
+    jobTitle      String   @db.VarChar(256)
+    targetProduct String   @db.VarChar(256)
+    ownerID       String   @db.VarChar(256)
+    source        String   @db.VarChar(512)}
+  */
+
+  if (name === "") {
+    alert("Name must be filled out");
+    return false;
+  }
+
+  if (name.length > 256) {
+    alert("Name must be less than 256 characters");
+    return false;
+  }
+
+  if (email === "") {
+    alert("Email must be filled out");
+    return false;
+  }
+
+  if (email.length > 256) {
+    alert("Email must be less than 256 characters");
+    return false;
+  }
+
+  if (mobileNumber === "") {
+    alert("Mobile Number must be filled out");
+    return false;
+  }
+
+  if (mobileNumber.length > 256) {
+    alert("Mobile Number must be less than 256 characters");
+    return false;
+  }
+
+  if (country === "") {
+    alert("Country must be filled out");
+    return false;
+  }
+
+  if (country.length > 256) {
+    alert("Country must be less than 256 characters");
+    return false;
+  }
+
+  if (city === "") {
+    alert("City must be filled out");
+    return false;
+  }
+
+  if (city.length > 256) {
+    alert("City must be less than 256 characters");
+    return false;
+  }
+
+  if (company === "") {
+    alert("Company must be filled out");
+    return false;
+  }
+
+  if (company.length > 256) {
+    alert("Company must be less than 256 characters");
+    return false;
+  }
+
+  if (jobTitle === "") {
+    alert("Job Title must be filled out");
+    return false;
+  }
+
+  if (jobTitle.length > 256) {
+    alert("Job Title must be less than 256 characters");
+    return false;
+  }
+
+  if (targetProduct === "") {
+    alert("Target Product must be filled out");
+    return false;
+  }
+
+  if (targetProduct.length > 256) {
+    alert("Target Product must be less than 256 characters");
+    return false;
+  }
+
+  if (customerSource === "") {
+    alert("Customer Source must be filled out");
+    return false;
+  }
+
+  if (customerSource.length > 512) {
+    alert("Customer Source must be less than 512 characters");
+    return false;
+  }
+
+  return true;
+}
+
 export default function Page() {
   const { trigger } = useSWRMutation("/insertCustomer/api", sendRequest);
 
@@ -34,18 +164,21 @@ export default function Page() {
       document.getElementById("customerSource") as HTMLInputElement
     ).value;
     const customerNotes = "";
-    await trigger({
-      name: name,
-      email: email,
-      mobileNumber: mobileNumber,
-      country: country,
-      city: city,
-      company: company,
-      jobTitle: jobTitle,
-      targetProduct: targetProduct,
-      source: customerSource,
-      customerNotes: customerNotes,
-    });
+
+    if (validateForm()) {
+      await trigger({
+        name: name,
+        email: email,
+        mobileNumber: mobileNumber,
+        country: country,
+        city: city,
+        company: company,
+        jobTitle: jobTitle,
+        targetProduct: targetProduct,
+        source: customerSource,
+        customerNotes: customerNotes,
+      });
+    }
 
     (document.getElementById("fullName") as HTMLInputElement).value = "";
     (document.getElementById("emailAddress") as HTMLInputElement).value = "";
