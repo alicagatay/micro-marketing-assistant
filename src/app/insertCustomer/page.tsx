@@ -30,22 +30,6 @@ function validateForm() {
     document.getElementById("customerSource") as HTMLInputElement
   ).value;
 
-  /*
-  Check if fields have been filled out and have the following sizes:
-
-  model Customer {
-    name          String   @db.VarChar(256)
-    email         String   @unique @db.VarChar(256)
-    mobileNumber  String   @db.VarChar(256)
-    country       String   @db.VarChar(256)
-    city          String   @db.VarChar(256)
-    company       String   @db.VarChar(256)
-    jobTitle      String   @db.VarChar(256)
-    targetProduct String   @db.VarChar(256)
-    ownerID       String   @db.VarChar(256)
-    source        String   @db.VarChar(512)}
-  */
-
   if (name === "") {
     alert("Name must be filled out");
     return false;
