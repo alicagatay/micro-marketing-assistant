@@ -41,15 +41,26 @@ export default function Page({ params }: { params: { customerID: number } }) {
     isLoading: boolean;
   };
 
-  async function submitData() {
-    console.log("Button Clicked");
+  function validateNote() {
+    const note = (
+      document.getElementById("customerNotes") as HTMLTextAreaElement
+    ).value;
+    if (note.length > 2048) {
+      alert("Note size is too large");
+      return false;
+    }
+    return true;
+  }
 
-    await trigger({
-      customerID: params.customerID,
-      customerNotes: (
-        document.getElementById("customerNotes") as HTMLTextAreaElement
-      ).value,
-    });
+  async function submitData() {
+    if (validateNote()) {
+      await trigger({
+        customerID: params.customerID,
+        customerNotes: (
+          document.getElementById("customerNotes") as HTMLTextAreaElement
+        ).value,
+      });
+    }
   }
 
   const [customerNotes, setCustomerNotes] = useState("");
