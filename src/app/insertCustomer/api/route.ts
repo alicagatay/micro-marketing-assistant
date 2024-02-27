@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 import { PrismaClient } from "@prisma/client";
+import { clerkClient } from "@clerk/nextjs";
 
 type Customer = {
   name: string;
@@ -29,8 +30,36 @@ type requestBody = {
   customerNotes: string;
 };
 
+const prisma = new PrismaClient();
+
+export async function GET(request: Request) {
+  const user = await currentUser();
+
+  if (!user) {
+    return new Response(JSON.stringify({ error: "User not found" }), {
+      status: 404,
+    });
+  }
+
+  const userId = user.id;
+  const userPrivateMetadata = (await clerkClient.users.getUser(userId))
+    .privateMetadata;
+
+  const customerCount = await prisma.customer.count({
+    where: {
+      ownerID: userId,
+    },
+  });
+
+  const canCreateCustomers =
+    !userPrivateMetadata.is_test_account ||
+    (userPrivateMetadata.is_test_account === true && customerCount <= 5);
+
+  return new Response(
+    JSON.stringify({ can_create_customers: canCreateCustomers }),
+  );
+}
 export async function POST(request: Request) {
-  const prisma = new PrismaClient();
   const user = await currentUser();
 
   const body: requestBody = (await request.json()) as requestBody;
