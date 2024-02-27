@@ -9,9 +9,6 @@ export default async function HomePage() {
     const userPrivateMetadata = (await clerkClient.users.getUser(userId))
       .privateMetadata;
 
-    console.log(userId);
-    console.log(userPrivateMetadata);
-
     if (userPrivateMetadata.is_test_account === undefined) {
       await clerkClient.users.updateUser(userId, {
         privateMetadata: { ...userPrivateMetadata, is_test_account: true },
