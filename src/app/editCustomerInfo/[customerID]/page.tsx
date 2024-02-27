@@ -41,8 +41,6 @@ export default function Page({ params }: { params: { customerID: number } }) {
   };
 
   async function submitData() {
-    console.log("Button Clicked");
-
     await trigger({
       id: params.customerID,
       name: (document.getElementById("fullName") as HTMLInputElement).value,
