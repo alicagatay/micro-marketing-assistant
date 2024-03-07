@@ -53,7 +53,7 @@ export async function GET(request: Request) {
 
   const canCreateCustomers =
     !userPrivateMetadata.is_test_account ||
-    (userPrivateMetadata.is_test_account === true && customerCount <= 5);
+    (userPrivateMetadata.is_test_account === true && customerCount <= 4);
 
   return new Response(
     JSON.stringify({ can_create_customers: canCreateCustomers }),
