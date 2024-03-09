@@ -12,7 +12,6 @@ export async function DELETE(request: Request, response: Response) {
   const body: RequestBody = (await request.json()) as RequestBody;
 
   const id = Number(body);
-  console.log(body);
 
   await prisma.customer.delete({
     where: {
