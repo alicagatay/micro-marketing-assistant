@@ -211,6 +211,14 @@ function saveFilterData() {
   return filterData;
 }
 
+async function deleteCustomer(url: string, customerID: number) {
+  console.log(JSON.stringify(customerID));
+  return fetch(url, {
+    method: "DELETE",
+    body: JSON.stringify(customerID),
+  });
+}
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -505,6 +513,26 @@ export default function TableScreen() {
                             Edit
                           </button>
                         </Link>
+                      </td>
+                      <td
+                        className={classNames(
+                          personIdx !== data.length - 1
+                            ? "border-b border-gray-200"
+                            : "",
+                          "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
+                        )}
+                      >
+                        <button
+                          type="button"
+                          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          onClick={async () => {
+                            const url = "/deleteCustomer/api";
+                            await deleteCustomer(url, person.id);
+                            setFilterData(filterData);
+                          }}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}
