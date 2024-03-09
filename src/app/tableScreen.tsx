@@ -212,7 +212,6 @@ function saveFilterData() {
 }
 
 async function deleteCustomer(url: string, customerID: number) {
-  console.log(JSON.stringify(customerID));
   return fetch(url, {
     method: "DELETE",
     body: JSON.stringify(customerID),
@@ -231,6 +230,10 @@ export default function TableScreen() {
     data: Person[];
     error: boolean;
     isLoading: boolean;
+  };
+
+  const handleRefresh = () => {
+    window.location.reload();
   };
 
   if (isLoading) {
@@ -522,17 +525,19 @@ export default function TableScreen() {
                           "whitespace-nowrap px-3 py-4 text-sm text-gray-500",
                         )}
                       >
-                        <button
-                          type="button"
-                          className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                          onClick={async () => {
-                            const url = "/deleteCustomer/api";
-                            await deleteCustomer(url, person.id);
-                            setFilterData(filterData);
-                          }}
-                        >
-                          Delete
-                        </button>
+                        <Link href={"/"}>
+                          <button
+                            type="button"
+                            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            onClick={async () => {
+                              const url = "/deleteCustomer/api";
+                              await deleteCustomer(url, person.id);
+                              handleRefresh();
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
