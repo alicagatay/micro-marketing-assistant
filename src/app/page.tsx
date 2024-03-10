@@ -11,7 +11,11 @@ export default async function HomePage() {
 
     if (userPrivateMetadata.is_test_account === undefined) {
       await clerkClient.users.updateUser(userId, {
-        privateMetadata: { ...userPrivateMetadata, is_test_account: true },
+        privateMetadata: {
+          ...userPrivateMetadata,
+          is_test_account: true,
+          is_pro_account: false,
+        },
       });
     }
   }
