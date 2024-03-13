@@ -84,7 +84,7 @@ export default function Page({ params }: { params: { customerID: number } }) {
       <div className="flex h-full min-h-screen flex-col items-center justify-center space-y-12">
         <textarea
           id="customerNotes"
-          className="h-[400px] w-[800px] rounded-md border-gray-300 bg-gray-400 p-4 text-base text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          className="h-[400px] w-[800px] rounded-md border-gray-600 bg-gray-600 p-4 text-base text-xl text-white shadow-sm focus:border-gray-600 focus:ring-gray-600"
           value={customerNotes}
           onChange={(e) => {
             setCustomerNotes(e.target.value);
