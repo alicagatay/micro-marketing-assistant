@@ -177,16 +177,6 @@ export default function Page() {
         source: customerSource,
         customerNotes: customerNotes,
       });
-      (document.getElementById("fullName") as HTMLInputElement).value = "";
-      (document.getElementById("emailAddress") as HTMLInputElement).value = "";
-      (document.getElementById("mobileNumber") as HTMLInputElement).value = "";
-      (document.getElementById("country") as HTMLInputElement).value = "";
-      (document.getElementById("city") as HTMLInputElement).value = "";
-      (document.getElementById("company") as HTMLInputElement).value = "";
-      (document.getElementById("jobTitle") as HTMLInputElement).value = "";
-      (document.getElementById("targetProduct") as HTMLInputElement).value = "";
-      (document.getElementById("customerSource") as HTMLInputElement).value =
-        "";
     }
   }
   if (isLoading) return <div>loading...</div>;
